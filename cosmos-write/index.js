@@ -1,7 +1,7 @@
 const { CosmosClient } = require("@azure/cosmos");
 
-const endpoint = "https://ireshan-cosmos-1.documents.azure.com:443/"; // Add your endpoint
-const key = "RQ1WNlQJXzuyxcmPLWjorzGhBsPFaV2ou1II22IvDMSlWFEjoVMB0rG2vPcIwKyPX12qhixnhrEnDpJ9LDSPLA=="; // Add the masterkey of the endpoint
+const endpoint = process.env.endpoint; // Add your endpoint
+const key = process.env.key; // Add the primary key of the endpoint
 const client = new CosmosClient({ endpoint, key });
 
 module.exports = async (context, req) => {
