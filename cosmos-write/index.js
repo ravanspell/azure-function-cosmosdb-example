@@ -1,16 +1,10 @@
-const { CosmosClient } = require("@azure/cosmos");
-
-const endpoint = process.env.endpoint; // Add your endpoint
-const key = process.env.key; // Add the primary key of the endpoint
-const client = new CosmosClient({ endpoint, key });
+const cosmosDatabase = require('../dbInit');
 
 module.exports = async (context, req) => {
     // const item = req.body;
+    const cosmosService = cosmosDatabase.createCosmosService();
+    const database = await cosmosService.initCosmos();
 
-    const dbResponse = await client.databases.createIfNotExists({
-        id: 'ireshan'
-    })
-    const database = dbResponse.database
     const coResponse = await database.containers.createIfNotExists({
         id: 'users'
     })
